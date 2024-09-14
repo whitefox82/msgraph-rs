@@ -580,7 +580,7 @@ dependencies = [
 
 [[package]]
 name = "msgraph-rs"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "dotenv",
  "env_logger",

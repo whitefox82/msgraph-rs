@@ -18,15 +18,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = GraphClient::new(client_id, client_secret, tenant_id, false)?;
 
     // The user ID (or UPN - User Principal Name) of the sender.
-    let user_id = "<<sender_user_principal_name>>"; // e.g., "user@example.com"
+    let user_id = "<sender_user_principal_name>"; // e.g., "user@example.com"
 
     // Define the email body. This is where you structure the content of the email to be sent.
     let mail_body = serde_json::json!({
         "message": {
-            "subject": "<<email_subject>>", // Subject of the email
+            "subject": "<email_subject>", // Subject of the email
             "body": {
                 "contentType": "Text",        // Type of the email content (Text or HTML)
-                "content": "<<email_content>>" // The actual content of the email message
+                "content": "<email_content>" // The actual content of the email message
             },
             "toRecipients": [
                 {
