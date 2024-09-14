@@ -15,7 +15,7 @@ To use this library in your Rust project, add the following to your `Cargo.toml`
 
 ```toml
 [dependencies]
-msgraph-rs = "0.1.1"
+msgraph-rs = "0.1.2"
 ```
 or 
 
@@ -89,4 +89,4 @@ This example demonstrates how to send an email using the Microsoft Graph API. Yo
 - **Application**: Mail.Send
 - **Delegated**: Mail.Send
 
-These permissions allow the app to send emails on behalf of the authenticated user.
+To allow the app to send emails **on behalf of any user** in the organization, the `Mail.Send` application permission must be granted with **admin consent**. This permission allows the app to impersonate any user in the organization and send emails on their behalf.
