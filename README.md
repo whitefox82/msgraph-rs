@@ -49,7 +49,6 @@ The following example demonstrates how to list users in your Azure Active Direct
 
 These permissions allow the app to read the basic profile information of all users in the directory. `User.Read.All` allows broader access, while `User.ReadBasic.All` allows access to minimal profile information (like display name and email).
 
-
 ### Example: Get a Specific User
 
 This example shows how to retrieve a specific user by their `userPrincipalName` (typically their email) or `user_id`.
@@ -61,3 +60,15 @@ This example shows how to retrieve a specific user by their `userPrincipalName` 
 - **Delegated**: `User.Read`
 
 These permissions allow the app to retrieve detailed profile information for a specific user in the directory.
+
+### Example: Revoke User Sign in Sessions
+
+This example shows how to revoke a specific users sign in sessions by their `userPrincipalName` (typically their email) or `user_id`.
+
+[revoke_signin.rs](https://github.com/whitefox82/msgraph-rs/blob/main/examples/revoke_signin.rs)
+
+#### Required App Permissions:
+- **Application**: `Directory.ReadWrite.All`
+- **Delegated**: `User.ReadWrite`
+
+These permissions allow the app to read and revoke a user’s sign-in sessions in the directory.
