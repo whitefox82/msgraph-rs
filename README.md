@@ -88,7 +88,7 @@ This example demonstrates how to send an email using the Microsoft Graph API. Yo
 - [send_email_attachment.rs](https://github.com/whitefox82/msgraph-rs/blob/main/examples/send_email_attachment.rs)
 
 #### Required App Permissions:
-- **Application**: Mail.Send
-- **Delegated**: Mail.Send
+- **Application**: `Mail.Send`
+- **Delegated**: `Mail.Send`
 
 To allow the app to send emails **on behalf of any user** in the organization, the `Mail.Send` application permission must be granted with **admin consent**. This permission allows the app to impersonate any user in the organization and send emails on their behalf.
