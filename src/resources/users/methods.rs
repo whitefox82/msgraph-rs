@@ -16,11 +16,6 @@ pub fn get_user(client: &GraphClient, user_id: &str) -> Result<Value, Box<dyn Er
     client.get(&path)
 }
 
-pub fn delete_user(client: &GraphClient, user_id: &str) -> Result<(), Box<dyn Error>> {
-    let path = format!("/users/{}", user_id);
-    client.delete(&path)
-}
-
 pub fn update_user(
     client: &GraphClient,
     user_id: &str,
@@ -34,3 +29,25 @@ pub fn revoke_sign_in_sessions(client: &GraphClient, user_id: &str) -> Result<Va
     let path = format!("/users/{}/revokeSignInSessions", user_id);
     client.post(&path, serde_json::json!({}))
 }
+
+pub fn send_mail(
+    client: &GraphClient,
+    user_id: &str,
+    body: Value,
+) -> Result<(), Box<dyn Error>> {
+    let path = format!("/users/{}/sendMail", user_id);
+
+    // Use `post_raw` to get the raw HTTP response
+    let response = client.post_raw(&path, body)?;
+
+    // Check if the response status is successful (2xx)
+    if response.status().is_success() {
+        Ok(())
+    } else {
+        Err(Box::new(std::io::Error::new(
+            std::io::ErrorKind::Other,
+            format!("Failed to send email. Status: {}", response.status()),
+        )))
+    }
+}
+

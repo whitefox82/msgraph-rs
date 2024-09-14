@@ -1,5 +1,5 @@
 use crate::resources::auth::token::get_access_token;
-use reqwest::blocking::Client;
+use reqwest::blocking::{Client, Response};
 use serde_json::Value;
 use std::error::Error;
 
@@ -10,7 +10,7 @@ pub struct GraphClient {
 }
 
 impl GraphClient {
-    // Initialize the GraphClient with the access token obtained using client credentials
+    // Initialize the GraphClient with an access token
     pub fn new(
         client_id: &str,
         client_secret: &str,
@@ -22,9 +22,8 @@ impl GraphClient {
         } else {
             crate::constants::GRAPH_URL
         }
-        .to_string();
+            .to_string();
 
-        // Get the access token
         let access_token = get_access_token(client_id, client_secret, tenant_id)?;
 
         Ok(GraphClient {
@@ -56,7 +55,19 @@ impl GraphClient {
         Ok(res)
     }
 
-    // Function to send POST request
+    // Function to send POST request and return raw Response (for status handling)
+    pub fn post_raw(&self, path: &str, body: Value) -> Result<Response, Box<dyn Error>> {
+        let url = format!("{}{}", self.base_url, path);
+        let res = self
+            .client
+            .post(&url)
+            .bearer_auth(&self.access_token)
+            .json(&body)
+            .send()?;
+        Ok(res)
+    }
+
+    // Function to send POST request and return parsed JSON
     pub fn post(&self, path: &str, body: Value) -> Result<Value, Box<dyn Error>> {
         let url = format!("{}{}", self.base_url, path);
         let res = self
@@ -70,16 +81,17 @@ impl GraphClient {
     }
 
     // Function to send DELETE request
-    pub fn delete(&self, path: &str) -> Result<(), Box<dyn Error>> {
+    pub fn delete(&self, path: &str) -> Result<Response, Box<dyn Error>> {
         let url = format!("{}{}", self.base_url, path);
-        self.client
+        let res = self
+            .client
             .delete(&url)
             .bearer_auth(&self.access_token)
             .send()?;
-        Ok(())
+        Ok(res)
     }
 
-    // Function to send PATCH request
+    // Function to send PATCH request and return parsed JSON
     pub fn patch(&self, path: &str, body: Value) -> Result<Value, Box<dyn Error>> {
         let url = format!("{}{}", self.base_url, path);
         let res = self

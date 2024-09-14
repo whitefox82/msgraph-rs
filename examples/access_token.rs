@@ -1,5 +1,4 @@
 use msgraph_rs::client::GraphClient;
-use msgraph_rs::resources::users::methods::*;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // These are your Microsoft Azure app credentials.
