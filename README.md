@@ -84,6 +84,8 @@ These permissions allow the app to read and revoke a user’s sign-in sessions i
 This example demonstrates how to send an email using the Microsoft Graph API. You will need to provide the sender's `userPrincipalName` (typically their email) and the email body including the recipient's email address, subject, and content.
 
 [send_email.rs](https://github.com/whitefox82/msgraph-rs/blob/main/examples/send_email.rs)
+[send_email_html.rs](https://github.com/whitefox82/msgraph-rs/blob/main/examples/send_email_html.rs)
+[send_email_attachment.rs](https://github.com/whitefox82/msgraph-rs/blob/main/examples/send_email_attachment.rs)
 
 #### Required App Permissions:
 - **Application**: Mail.Send
