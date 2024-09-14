@@ -15,8 +15,14 @@ To use this library in your Rust project, add the following to your `Cargo.toml`
 
 ```toml
 [dependencies]
-msgraph-rs = "0.1.0"
+msgraph-rs = "0.1.1"
 ```
+or 
+
+```bash
+cargo add msgraph-rs
+```
+
 ## Usage
 
 ### Authentication
