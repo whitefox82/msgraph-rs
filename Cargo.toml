@@ -28,6 +28,9 @@ tokio = { version = "1.0", features = ["full"], optional = true }
 # dotenv for environment variable management
 dotenv = "0.15"
 
+# For send_email_attachment.rs
+base64 = "0.22.1"
+
 [dev-dependencies]
 # Dependencies only required for testing
 tokio = { version = "1.0", features = ["full"] }
