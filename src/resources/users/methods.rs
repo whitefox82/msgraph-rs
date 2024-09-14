@@ -29,3 +29,8 @@ pub fn update_user(
     let path = format!("/users/{}", user_id);
     client.patch(&path, body)
 }
+
+pub fn revoke_sign_in_sessions(client: &GraphClient, user_id: &str) -> Result<Value, Box<dyn Error>> {
+    let path = format!("/users/{}/revokeSignInSessions", user_id);
+    client.post(&path, serde_json::json!({}))
+}
